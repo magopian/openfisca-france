@@ -1,5 +1,12 @@
 # Changelog
 
+### 21.10.8
+
+* Amélioration technique.
+* Zones impactées : `tests/**/*.yaml`.
+* Détails :
+  - Normalisation des fichiers de test YAML.
+
 ### 21.10.7 [#986](https://github.com/openfisca/openfisca-france/pull/986)
 
 * Évolution du système socio-fiscal.
