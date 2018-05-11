@@ -1,5 +1,12 @@
 # Changelog
 
+### 22.1.3 [#991](https://github.com/openfisca/openfisca-france/pull/991)
+
+* Amélioration technique.
+* Zones impactées : `**/*.yaml`.
+* Détails :
+  - Normalisation des fichiers YAML
+
 ### 22.1.2 [#1039](https://github.com/openfisca/openfisca-france/pull/1039)
 
 * Amélioration technique.
@@ -22,7 +29,7 @@
 
 * Amélioration fonctionnelle
 * Périodes concernées : toutes.
-* Zones impactées : `chemin/vers/le/fichier/contenant/les/variables/impactées`.
+* Zones impactées : `reforms/simulation_reform`.
 * Détails :
   - Création d'une réforme qui adapte la législation pour les simulateurs
 
@@ -35,7 +42,7 @@
 * Détails :
   - Fait commencer la variable `logement_social_eligible` au 01/01/2017
 
-### 22.0.0 [#102](https://github.com/openfisca/openfisca-france/pull/1026)
+# 22.0.0 [#102](https://github.com/openfisca/openfisca-france/pull/1026)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.

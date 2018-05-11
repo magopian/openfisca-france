@@ -37,6 +37,11 @@ jobs:
             yamllint `circleci tests glob "**/*.yaml"`
 
       - run:
+          name: Run YAML formatter and check for changes
+          command: |
+            .circleci/are-yaml-files-properly-formatted.sh `circleci tests glob "**/*.yaml"`
+
+      - run:
           name: Run tests
           command: |
             nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
@@ -113,6 +118,11 @@ jobs:
           name: Lint YAML files
           command: |
             yamllint `circleci tests glob "**/*.yaml"`
+
+      - run:
+          name: Run YAML formatter and check for changes
+          command: |
+            .circleci/are-yaml-files-properly-formatted.sh `circleci tests glob "**/*.yaml"`
 
       - run:
           name: Run tests
