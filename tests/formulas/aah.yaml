@@ -1,4 +1,4 @@
-- name: "AAH niveau Individu - Eligible, célibataire, sans enfants"
+- name: AAH niveau Individu - Eligible, célibataire, sans enfants
   description: Montant AAH au niveau de l individu
   period: 2014-11
   absolute_error_margin: 1
@@ -11,7 +11,7 @@
   output_variables:
     aah: 9100 / 12  # (9605,40 - 500)  / 12
 
-- name: "AAH niveau Individu - Eligible, en concubinage, sans enfants, ressources supérieures au plafond"
+- name: AAH niveau Individu - Eligible, en concubinage, sans enfants, ressources supérieures au plafond
   description: Montant AAH au niveau de l individu
   period: 2012-03
   absolute_error_margin: 1
@@ -24,7 +24,7 @@
   output_variables:
     aah: 2846.88 / 12  # (743.62 * 24 (17846.88) - 12000)  / 12
 
-- name: "AAH Eligibilité personne seule sans revenus"# plafond aah = 12 x 807.65 (montant mensuel de l'AAH)
+- name: AAH Eligibilité personne seule sans revenus  # plafond aah = 12 x 807.65 (montant mensuel de l'AAH)
   period: 2015-11
   absolute_error_margin: 1
   input_variables:
@@ -33,7 +33,7 @@
   output_variables:
     aah_base: 807.65
 
-- name: "AAH Eligibilité couple sans ressource"
+- name: AAH Eligibilité couple sans ressource
   description: Montant AAH pour un couple sans revenus
   period: 2015-11
   absolute_error_margin: 1
@@ -45,7 +45,7 @@
   output_variables:
     aah_base: 1615.3
 
-- name: "AAH Eligibilité couple sans ressource avec enfant"
+- name: AAH Eligibilité couple sans ressource avec enfant
   description: Montant AAH pour un couple avec enfant sans revenus
   period: 2015-11
   absolute_error_margin: 1
@@ -57,7 +57,7 @@
   output_variables:
     aah_base: 807.65 * (2 + 1/2)
 
-- name: "AAH salarié célibataire (K.P.), moins de 30% du SMIC"
+- name: AAH salarié célibataire (K.P.), moins de 30% du SMIC
   period: 2015-11
   absolute_error_margin: 1
   input_variables:
@@ -73,7 +73,7 @@
     aah_base:
       2015-11: 727.65
 
-- name: "AAH salarié célibataire (K.P.), plus de 30% du SMIC"
+- name: AAH salarié célibataire (K.P.), plus de 30% du SMIC
   period: 2015-11
   absolute_error_margin: 1
   input_variables:
@@ -89,7 +89,7 @@
     aah_base:
       2015-11: 99.89
 
-- name: "AAH inactif célibataire (K.P.), ressources n-2"
+- name: AAH inactif célibataire (K.P.), ressources n-2
   period: 2015-11
   absolute_error_margin: 1
   input_variables:
@@ -102,48 +102,48 @@
     aah_base:
       2015-11: 795
 
-- name: "AAH demandeur sans ressource et conjoint salarié"
-  period: "month:2015-04"
+- name: AAH demandeur sans ressource et conjoint salarié
+  period: month:2015-04
   absolute_error_margin: 0.005
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
   individus:
-    - id: "parent1"
-      age: 40
-      taux_incapacite: 0.9
-    - id: "parent2"
-      age: 40
-      salaire_imposable:
-        2013: 1128.70 * 12
+  - id: parent1
+    age: 40
+    taux_incapacite: 0.9
+  - id: parent2
+    age: 40
+    salaire_imposable:
+      2013: 1128.70 * 12
   output_variables:
     aah_base_ressources:
       2015-11: (1128.70 * 12) * 0.9 * 0.8
 
-- name: "AAH demandeur et conjoint salariés"
-  period: "month:2015-11"
+- name: AAH demandeur et conjoint salariés
+  period: month:2015-11
   relative_error_margin: 0.05
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
   individus:
-    - id: "parent1"
-      age: 40
-      taux_incapacite: 0.9
-      salaire_imposable:
-        2015-11: 1471
-        2015-10: 1471
-        2015-09: 1471
-        2015-08: 1471
-    - id: "parent2"
-      age: 40
-      salaire_imposable:
-        2015-11: 1000
-        2015-10: 1000
-        2015-09: 1000
-        2015-08: 1000
+  - id: parent1
+    age: 40
+    taux_incapacite: 0.9
+    salaire_imposable:
+      2015-11: 1471
+      2015-10: 1471
+      2015-09: 1471
+      2015-08: 1471
+  - id: parent2
+    age: 40
+    salaire_imposable:
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 1000
+      2015-08: 1000
   output_variables:
-        aah_base_ressources:
-          2015-11: (1000 * 12) * 0.9 * 0.8 + 8494
-        aah_base:
-          2015-11: [187, 0]
-        aah:
-          2015-11: [187, 0]
+    aah_base_ressources:
+      2015-11: (1000 * 12) * 0.9 * 0.8 + 8494
+    aah_base:
+      2015-11: [187, 0]
+    aah:
+      2015-11: [187, 0]
