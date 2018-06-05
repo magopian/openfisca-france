@@ -1,0 +1,87 @@
+- name: "Logement social - Plafond de ressources - Catégorie 1 - Paris et communes limitrophes"
+  period: 2018-01
+  input_variables:
+    logement_social_categorie_menage: categorie_1
+    zone_logement_social: paris_communes_limitrophes
+  output_variables:
+    logement_social_plafond_ressources: 12733
+- name: "Logement social - Plafond de ressources - Catégorie 1 - Île-de-France"
+  period: 2018-01
+  input_variables:
+    logement_social_categorie_menage: categorie_1
+    zone_logement_social: ile_de_france
+  output_variables:
+    logement_social_plafond_ressources: 12733
+- name: "Logement social - Plafond de ressources - Catégorie 1 - Autres régions"
+  period: 2018-01
+  input_variables:
+    logement_social_categorie_menage: categorie_1
+    zone_logement_social: autres_regions
+  output_variables:
+    logement_social_plafond_ressources: 11067
+
+- name: "Logement social - Plafond de ressources - Catégorie 2 - Paris et communes limitrophes"
+  period: 2018-01
+  input_variables:
+    logement_social_categorie_menage: categorie_2
+    zone_logement_social: paris_communes_limitrophes
+  output_variables:
+    logement_social_plafond_ressources: 20756
+- name: "Logement social - Plafond de ressources - Catégorie 2 - Île-de-France"
+  period: 2018-01
+  input_variables:
+    logement_social_categorie_menage: categorie_2
+    zone_logement_social: ile_de_france
+  output_variables:
+    logement_social_plafond_ressources: 20756
+- name: "Logement social - Plafond de ressources - Catégorie 2 - Autres régions"
+  period: 2018-01
+  input_variables:
+    logement_social_categorie_menage: categorie_2
+    zone_logement_social: autres_regions
+  output_variables:
+    logement_social_plafond_ressources: 16125
+
+- name: "Logement social - Plafond de ressources - Catégorie 3 - Paris et communes limitrophes"
+  period: 2018-01
+  input_variables:
+    logement_social_categorie_menage: categorie_3
+    zone_logement_social: paris_communes_limitrophes
+  output_variables:
+    logement_social_plafond_ressources: 27207
+- name: "Logement social - Plafond de ressources - Catégorie 3 - Île-de-France"
+  period: 2018-01
+  input_variables:
+    logement_social_categorie_menage: categorie_3
+    zone_logement_social: ile_de_france
+  output_variables:
+    logement_social_plafond_ressources: 24949
+- name: "Logement social - Plafond de ressources - Catégorie 3 - Autres régions"
+  period: 2018-01
+  input_variables:
+    logement_social_categorie_menage: categorie_3
+    zone_logement_social: autres_regions
+  output_variables:
+    logement_social_plafond_ressources: 19390
+
+- name: "Logement social - Plafond de ressources - Catégorie 4 - Paris et communes limitrophes"
+  period: 2018-01
+  input_variables:
+    logement_social_categorie_menage: categorie_4
+    zone_logement_social: paris_communes_limitrophes
+  output_variables:
+    logement_social_plafond_ressources: 29781
+- name: "Logement social - Plafond de ressources - Catégorie 4 - Île-de-France"
+  period: 2018-01
+  input_variables:
+    logement_social_categorie_menage: categorie_4
+    zone_logement_social: ile_de_france
+  output_variables:
+    logement_social_plafond_ressources: 27394
+- name: "Logement social - Plafond de ressources - Catégorie 4 - Autres régions"
+  period: 2018-01
+  input_variables:
+    logement_social_categorie_menage: categorie_4
+    zone_logement_social: autres_regions
+  output_variables:
+    logement_social_plafond_ressources: 21575
