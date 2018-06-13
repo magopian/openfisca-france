@@ -111,12 +111,12 @@ class logement_social_categorie_menage(Variable):
 
         return select(
             [
-                not is_couple and personnes_a_charge == 0,
-                is_couple and not is_jeune_menage and personnes_a_charge == 0,
-                (is_couple and personnes_a_charge == 1) or (not is_couple and personnes_a_charge == 1) or (is_jeune_menage and personnes_a_charge == 0),
-                (is_couple and personnes_a_charge == 2) or (not is_couple and personnes_a_charge == 2),
-                (is_couple and personnes_a_charge == 3) or (not is_couple and personnes_a_charge == 3),
-                (is_couple and personnes_a_charge == 4) or (not is_couple and personnes_a_charge == 4),
+                not_(is_couple) * (personnes_a_charge == 0),
+                is_couple * not_(is_jeune_menage) * (personnes_a_charge == 0),
+                (personnes_a_charge == 1) + (is_jeune_menage * personnes_a_charge == 0),
+                (personnes_a_charge == 2),
+                (personnes_a_charge == 3),
+                (personnes_a_charge == 4),
             ],
             [
                 CategorieMenageLogementSocial.categorie_1,

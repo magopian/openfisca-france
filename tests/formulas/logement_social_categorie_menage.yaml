@@ -195,5 +195,26 @@
       age: 8
     - id: "enfant4"
       age: 8
+  familles:
+    - parents: ["declarant1"]
   output_variables:
     logement_social_categorie_menage: categorie_5
+
+- name: "Logement social - Catégorie de ménage - 2 familles"
+  period: 2018-01
+  foyers_fiscaux:
+    - declarants: ["declarant1", "declarant2"]
+      personnes_a_charge: []
+  menages:
+    personne_de_reference: "declarant1"
+    conjoint: "declarant2"
+  individus:
+    - id: "declarant1"
+    - id: "declarant2"
+  familles:
+    - parents: ["declarant1"]
+    - parents: ["declarant2"]
+  output_variables:
+    logement_social_categorie_menage:
+      - "categorie_1"
+      - "categorie_1"
