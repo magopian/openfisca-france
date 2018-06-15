@@ -1,11 +1,18 @@
 # -*- coding: utf-8 -*-
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
+import numpy as np
 
 import logging
 from pprint import pformat
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
+
+
+# https://stackoverflow.com/questions/39042214/how-can-i-slice-each-element-of-a-numpy-array-of-strings#answer-39045337
+def string_slicer_vectorized(a, start, end):
+    b = a.view('S1').reshape(len(a), -1)[:, start:end]
+    return np.fromstring(b.tostring(), dtype='S' + str(end - start))
 
 # Paris, Aubervilliers, Bagnolet, Boulogne-Billancourt, Charenton-le-Pont, Clichy-la-Garenne, Fontenay-sous-Bois,
 # Gentilly, Issy-les-Moulineaux, Ivry-sur-Seine, Joinville-le-Pont, le Kremlin-Bicêtre, Les Lilas, Le Pré-Saint-Gervais,
@@ -43,6 +50,7 @@ paris_communes_limitrophes = [
     '94080'
 ]
 
+
 class ZoneLogementSocial(Enum):
     __order__ = 'paris_communes_limitrophes ile_de_france autres_regions'
     paris_communes_limitrophes = u"Paris et communes limitrophes"
@@ -50,6 +58,7 @@ class ZoneLogementSocial(Enum):
     autres_regions = u"Autres régions"
 
 
+departements_idf = '75 77 78 91 92 93 94 95'.split()
 class zone_logement_social(Variable):
     value_type = Enum
     possible_values = ZoneLogementSocial
@@ -58,17 +67,13 @@ class zone_logement_social(Variable):
     definition_period = MONTH
     label = u"Zone logement social"
     def formula(menage, period):
-
         depcom = menage('depcom', period)
-        departement = depcom.astype(int) / 1000
-
-        departements_idf = [75, 77, 78, 91, 92, 93, 94, 95]
-        in_idf = sum([departement == departement_idf for departement_idf in departements_idf])
+        departement = string_slicer_vectorized(depcom, 0, 2)
 
         return select(
             [
                 depcom in paris_communes_limitrophes,
-                in_idf
+                departement in departements_idf
             ],
             [
                 ZoneLogementSocial.paris_communes_limitrophes,
@@ -76,6 +81,7 @@ class zone_logement_social(Variable):
             ],
             default = ZoneLogementSocial.autres_regions
         )
+
 
 class CategorieMenageLogementSocial(Enum):
     __order__ = 'categorie_1 categorie_2 categorie_3 categorie_4 categorie_5 categorie_6'
@@ -85,6 +91,7 @@ class CategorieMenageLogementSocial(Enum):
     categorie_4 = u"Quatre personnes ou une pers. seule avec deux pers. à charge"
     categorie_5 = u"Cinq personnes ou une pers. seule avec trois pers. à charge"
     categorie_6 = u"Six personnes ou une pers. seule avec quatre pers. à charge"
+
 
 class logement_social_categorie_menage(Variable):
     entity = Famille
@@ -128,6 +135,7 @@ class logement_social_categorie_menage(Variable):
             ],
             default = CategorieMenageLogementSocial.categorie_1
         )
+
 
 class logement_social_plafond_ressources(Variable):
     entity = Famille
