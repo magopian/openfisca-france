@@ -1883,16 +1883,11 @@ class rev_cap_bar(Variable):
 
 
 class rev_cap_lib(Variable):
-    '''Revenu du capital imposé au prélèvement libératoire
-
-    Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
-    '''
-    calculate_output = calculate_output_add
     value_type = float
     entity = FoyerFiscal
     label = u"Revenu du capital imposé au prélèvement libératoire"
     set_input = set_input_divide_by_period
-    reference = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
+    reference = "http://bofip.impots.gouv.fr/bofip/3817-PGP"
     definition_period = MONTH
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
