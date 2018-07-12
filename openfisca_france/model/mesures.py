@@ -236,10 +236,9 @@ class revenus_nets_du_capital(Variable):
         rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
         cotsoc_lib = foyer_fiscal('cotsoc_lib', period)
         rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
-        imp_lib = foyer_fiscal('imp_lib', period)
         cotsoc_bar = foyer_fiscal('cotsoc_bar', period)
 
-        revenus_foyer_fiscal = fon + rev_cap_bar + cotsoc_lib + rev_cap_lib + imp_lib + cotsoc_bar
+        revenus_foyer_fiscal = fon + rev_cap_bar + cotsoc_lib + rev_cap_lib + cotsoc_bar
         revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL)
 
         rac = individu('rac', period)
@@ -349,7 +348,11 @@ class impots_directs(Variable):
         irpp_i = menage.members.foyer_fiscal('irpp', period)
         irpp = menage.sum(irpp_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return irpp + taxe_habitation
+        # On projette comme pour PPE dans revenu_disponible
+        imp_lib_i = menage.members.foyer_fiscal('imp_lib', period)
+        imp_lib = menage.sum(imp_lib_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return irpp + taxe_habitation +  imp_lib
 
 
 class crds(Variable):
