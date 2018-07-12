@@ -3,7 +3,6 @@
 ### 22.1.1 [#1038](https://github.com/openfisca/openfisca-france/pull/1038)
 
 * Amélioration technique.
-* Zones impactées : `.circleci/config.yaml`:
 * Détails :
   - Corrige les appels `circleci tests glob` pour que `**` soit récursif
 
