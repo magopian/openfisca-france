@@ -12,7 +12,7 @@ RoundTripRepresenter.add_representer(type(None), my_represent_none)
 
 yaml = YAML()
 yaml.default_flow_style = False
-yaml.width = 1000
+yaml.preserve_quotes = True
 
 def roundTrip(path):
     with io.open(path, 'r', encoding='utf8') as f:
