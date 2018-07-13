@@ -3,8 +3,13 @@
 ### 22.1.1 [#1038](https://github.com/openfisca/openfisca-france/pull/1038)
 
 * Amélioration technique.
+* Zones impactées :
+  - `prelevements_obligatoires/impot_revenu/reductions_impot`
+  - `prestations/anah/eligibilite_anah`
+  - `scenarios`.
 * Détails :
-  - Corrige les appels `circleci tests glob` pour que `**` soit récursif
+  - Corrige les appels `circleci tests glob` pour que `**` soit récursif et que tous les tests soient lancés
+  - Corrections pour que tous les tests passent
 
 ## 22.1.0 [#1037](https://github.com/openfisca/openfisca-france/pull/1037)
 
