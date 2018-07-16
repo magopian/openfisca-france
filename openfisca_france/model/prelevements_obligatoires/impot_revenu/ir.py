@@ -948,27 +948,6 @@ class csg_deduc_patrimoine(Variable):
         return max_(f6de, 0)
 
 
-class csg_deduc_patrimoine_simulated(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Csg déductible sur le patrimoine simulée"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        '''
-        Cette fonction simule le montant mentionné dans la case f6de de la déclaration 2042
-        http://bofip.impots.gouv.fr/bofip/887-PGP
-        '''
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period)
-        retraite_titre_onereux = foyer_fiscal('retraite_titre_onereux', period)
-        taux = parameters(period).csg.capital.deduc
-
-        patrimoine_deduc = rev_cat_rfon + rev_cap_bar + retraite_titre_onereux
-        return taux * patrimoine_deduc
-
-
 class csg_deduc(Variable):  # f6de
     value_type = float
     entity = FoyerFiscal
