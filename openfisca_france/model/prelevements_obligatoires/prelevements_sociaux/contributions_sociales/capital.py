@@ -96,22 +96,22 @@ class assiette_csg_revenus_capital(Variable):
             )
 
 
-# revenus du capital soumis au barème
-
-
-class csg_cap_bar(Variable):
-    """Calcule la CSG sur les revenus du capital soumis au barème."""
+class csg_revenus_capital(Variable):
+    """Calcule la CSG sur les revenus du capital."""
     value_type = float
     entity = FoyerFiscal
-    label = u"CSG sur les revenus du capital soumis au barème"
-    reference = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
+    label = u"CSG sur les revenus du capital"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         _P = parameters(period)
 
-        return -rev_cap_bar * _P.prelevements_sociaux.contributions.csg.capital.glob
+        return -assiette_csg_revenus_capital * _P.prelevements_sociaux.contributions.csg.capital.glob
+
+
+# revenus du capital soumis au barème
+
 
 
 class crds_cap_bar(Variable):
@@ -179,21 +179,6 @@ class prelsoc_cap_bar(Variable):
         return -rev_cap_bar * total
 
 
-class csg_pv_mo(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"CSG sur les plus-values de cession de valeurs mobilières"
-    reference = "http://vosdroits.service-public.fr/particuliers/F21618.xhtml"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        """
-        Calcule la CSG sur les plus-values de cession mobilière
-        """
-        f3vg = foyer_fiscal('f3vg', period)
-        _P = parameters(period)
-
-        return -f3vg * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_pv_mo(Variable):
@@ -269,21 +254,6 @@ class prelsoc_pv_mo(Variable):
 
 # Plus-values immobilières
 
-class csg_pv_immo(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"CSG sur les plus-values immobilières"
-    reference = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        """
-        Calcule la CSG sur les plus-values de cession immobilière
-        """
-        f3vz = foyer_fiscal('f3vz', period)
-        _P = parameters(period)
-
-        return -f3vz * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_pv_immo(Variable):
@@ -359,22 +329,6 @@ class prelsoc_pv_immo(Variable):
 
 # Revenus fonciers
 
-class csg_fon(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"CSG sur les revenus fonciers"
-    reference = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        '''
-        Calcule la CSG sur les revenus fonciers
-        Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
-        '''
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
-        _P = parameters(period)
-
-        return -rev_cat_rfon * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_fon(Variable):
@@ -456,19 +410,6 @@ class prelsoc_fon(Variable):
 # revenus du capital soumis au prélèvement libératoire
 
 
-class csg_cap_lib(Variable):
-    """Calcule la CSG sur les revenus du capital soumis au prélèvement libératoire."""
-    value_type = float
-    entity = FoyerFiscal
-    label = u"CSG sur les revenus du capital soumis au prélèvement libératoire"
-    reference = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
-        _P = parameters(period)
-
-        return -rev_cap_lib * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_cap_lib(Variable):
