@@ -97,7 +97,6 @@ class assiette_csg_revenus_capital(Variable):
 
 
 class csg_revenus_capital(Variable):
-    """Calcule la CSG sur les revenus du capital."""
     value_type = float
     entity = FoyerFiscal
     label = u"CSG sur les revenus du capital"
@@ -113,24 +112,27 @@ class csg_revenus_capital(Variable):
 
         return -assiette_csg_revenus_capital * _P.prelevements_sociaux.contributions.csg.capital.glob
 
+class crds_revenus_capital(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"CRDS sur les revenus du capital"
+    definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Cette formule n'est définie qu'à partir de 2013 : cf. docstring de la variable
+        assiette_csg_revenus_capital pour une explication
+        '''
+        assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
+        _P = parameters(period).taxation_capital.prelevements_sociaux
+
+        return -assiette_csg_revenus_capital * _P.crds.revenus_du_patrimoine
+
 
 # revenus du capital soumis au barème
 
 
 
-class crds_cap_bar(Variable):
-    """Calcule la CRDS sur les revenus du capital soumis au barème."""
-    value_type = float
-    entity = FoyerFiscal
-    label = u"CRDS sur les revenus du capital soumis au barème"
-    reference = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
-        _P = parameters(period).taxation_capital.prelevements_sociaux
-
-        return -rev_cap_bar * _P.crds.revenus_du_patrimoine
 
 
 class prelsoc_cap_bar(Variable):
@@ -185,21 +187,7 @@ class prelsoc_cap_bar(Variable):
 
 
 
-class crds_pv_mo(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"CRDS sur les plus-values de cession de valeurs mobilières"
-    reference = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
-    definition_period = YEAR
 
-    def formula(foyer_fiscal, period, parameters):
-        """
-        Calcule la CRDS sur les plus-values de cession mobilière
-        """
-        f3vg = foyer_fiscal('f3vg', period)
-        _P = parameters(period).taxation_capital.prelevements_sociaux
-
-        return -f3vg * _P.crds.revenus_du_patrimoine
 
 
 class prelsoc_pv_mo(Variable):
@@ -260,21 +248,6 @@ class prelsoc_pv_mo(Variable):
 
 
 
-class crds_pv_immo(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"CRDS sur les plus-values immobilières"
-    reference = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        """
-        Calcule la CRDS sur les plus-values de cession immobilière
-        """
-        f3vz = foyer_fiscal('f3vz', period)
-        _P = parameters(period).taxation_capital.prelevements_sociaux
-
-        return -f3vz * _P.crds.revenus_du_patrimoine
 
 
 class prelsoc_pv_immo(Variable):
@@ -335,22 +308,7 @@ class prelsoc_pv_immo(Variable):
 
 
 
-class crds_fon(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"CRDS sur les revenus fonciers"
-    reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
-    definition_period = YEAR
 
-    def formula(foyer_fiscal, period, parameters):
-        '''
-        Calcule la CRDS sur les revenus fonciers
-        Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
-        '''
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
-        _P = parameters(period).taxation_capital.prelevements_sociaux
-
-        return -rev_cat_rfon * _P.crds.revenus_du_patrimoine
 
 
 class prelsoc_fon(Variable):
@@ -416,19 +374,7 @@ class prelsoc_fon(Variable):
 
 
 
-class crds_cap_lib(Variable):
-    """Calcule la CRDS sur les revenus du capital soumis au prélèvement libératoire."""
-    value_type = float
-    entity = FoyerFiscal
-    label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire"
-    reference = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
-    definition_period = YEAR
 
-    def formula(foyer_fiscal, period, parameters):
-        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
-        _P = parameters(period).taxation_capital.prelevements_sociaux
-
-        return -rev_cap_lib * _P.crds.revenus_du_patrimoine
 
 
 class prelsoc_cap_lib(Variable):
