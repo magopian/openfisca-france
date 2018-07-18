@@ -1,5 +1,15 @@
 # Changelog
 
+### 22.2.2 [#1040](https://github.com/openfisca/openfisca-france/pull/1040)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2013.
+* Zones impactées :
+  - `model\prelevements_obligatoires\impot_revenu\ir`
+* Détails :
+  - Ajoute une variable "depcom_foyer" donnant le lieu de résidence fiscale du foyer.
+  - Utilise cette variable pour calculer l'abattement d'impôt spécial DOM
+
 ### 22.2.1 [#1038](https://github.com/openfisca/openfisca-france/pull/1038)
 
 * Correction d'un crash
